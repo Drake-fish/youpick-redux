@@ -1,0 +1,26 @@
+nav ul {
+  list-style: none;
+  background-color: #3081ca;
+  margin: 0;
+  padding: 2rem 14px;
+}
+
+nav ul:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.fa-user-circle {
+  float: left;
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.fa-sliders-h {
+  float: right;
+  margin-right: 1rem;
+  font-size: 1.5rem;
+  color: white;
+}

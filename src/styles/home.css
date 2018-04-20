@@ -1,0 +1,34 @@
+.search-card {
+  width: 100%;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: -108px;
+  position: relative;
+}
+
+.food {
+  background: url('../images/food.jpg') no-repeat center;
+  background-size: cover;
+}
+
+.play {
+  background: url('../images/random.jpg') no-repeat center;
+  background-size: cover;
+}
+
+.search {
+  background: url('../images/searchimage.jpg') no-repeat center;
+  background-size: cover;
+}
+
+.search-title {
+  font-size: 2rem;
+  color: white;
+  position: absolute;
+  bottom: -43px;
+  padding: 1rem 0;
+  display: block;
+  width: 100%;
+  background-color: #211c1c7a;
+}
