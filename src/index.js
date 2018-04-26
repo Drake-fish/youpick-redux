@@ -19,6 +19,7 @@ import EditPreference from './components/EditPreference';
 import PreferencePage from './components/PreferencePage';
 import LoadingComponent from './components/LoadingComponent';
 
+
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 // authenticated component must be below login

@@ -7,11 +7,15 @@ import { getUser } from '../actions/userActions';
 
 class LoadingComponent extends Component {
     componentWillMount() {
-        const { userLoading } = this.props;
+      console.log(this.props);
+        const { userLoading, getUser, preferencesLoading } = this.props;
         // if we havent tried to load the user, load user
         if (userLoading === undefined) {
-            this.props.getUser();
+            getUser();
         }
+        // if (preferencesLoading === undefined ){
+        //   this.props.getPreferences();
+        // }
     }
 
     render() {

@@ -1,0 +1,97 @@
+.login-form, .register-form {
+  width: 85%;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+  background-color: #e6e5e5;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: scale(1);
+  transition: .3s ease-in-out;
+}
+
+.register-form {
+  width: 340px;
+  height: 340px;
+  margin-left: -170px;
+  margin-top: -170px;
+  z-index: 1;
+}
+
+.login-form {
+  opacity: 1;
+  height: 260px;
+  width: 340px;
+  margin-top: -130px;
+  margin-left: -170px;
+  z-index: 1
+}
+
+.hidden {
+  transform: scale(0);
+  z-index: -1;
+}
+
+.showing {
+  transform: scale(1);
+}
+
+.form-title {
+  text-align: center;
+  background-color: #3e3d3d;
+  color: white;
+  padding: 1rem;
+  margin-top: 0;
+}
+
+.login-form input, .register-form input {
+  display: block;
+  width: 68%;
+  margin: 0 auto;
+  padding: 10px;
+  margin-bottom: 1rem;
+}
+
+.submit {
+  width: 75%;
+  margin: 0 auto;
+  padding: 11px;
+  display: block;
+  font-size: 1.3rem;
+  color: white;
+  text-align: center;
+  background: green;
+}
+
+.register-text {
+  text-align: center;
+  color: #a0a0a0;
+}
+
+.register-link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.google, .twitter {
+  width: 50%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 1rem;
+  border-top: none;
+  font-size: 1rem;
+  color: white;
+  cursor: pointer;
+}
+
+.twitter {
+  background: #26b8f9;
+}
+
+.google {
+  background: #ea4236;
+}
+
+.fa-google, .fa-twitter {
+  margin-right: 10px;
+}

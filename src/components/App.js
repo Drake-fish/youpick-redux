@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../styles/home.css';
+import { getPreferences, savePreference } from '../actions/preferenceActions';
+import { getUser } from '../actions/userActions';
+import { fetchProducts } from '../actions/dineActions';
+import { getLocation } from '../actions/locationAction';
 
 class App extends Component {
-
+  componentWillMount(){
+    this.props.getLocation();
+  }
+  handleFood = () =>{
+    const { fetchProducts } = this.props;
+    fetchProducts();
+  }
   render() {
-    let height=window.innerHeight/3 - 20;
     const divHeight= {
-      height:height
+      height:window.innerHeight/3 - 20
     }
+
     return (
       <div className="App">
-        <div style={divHeight} className="search-card food">
+        <div style={divHeight} onClick={this.handleFood} className="search-card food">
           <h4 className="search-title">DINE</h4>
         </div>
         <div style={divHeight} className="search-card play">
@@ -24,5 +34,13 @@ class App extends Component {
     );
   }
 }
+function mapStateToProps(state, ownProps){
+  return {
+    user: state.user,
+    userLoading: state.loading.user,
+    preferences: state.preferences
 
-export default App;
+  }
+}
+
+export default connect(mapStateToProps, { getUser, getPreferences, savePreference, fetchProducts, getLocation })(App);

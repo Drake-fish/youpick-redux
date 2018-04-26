@@ -11,7 +11,7 @@ import * as firebase from 'firebase'
   };
   firebase.initializeApp(config);
 
-  export const database = firebase.database().ref('/preferences');
+  export const database = firebase.database();
 
   //regular authentication
   export const auth = firebase.auth();
