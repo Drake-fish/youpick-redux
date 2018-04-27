@@ -8,7 +8,10 @@ import { getLocation } from '../actions/locationAction';
 
 class App extends Component {
   componentWillMount(){
-    this.props.getLocation();
+    if(this.props.location === null){
+      this.props.getLocation();
+    };
+
   }
   handleFood = () =>{
     const { fetchProducts } = this.props;
@@ -35,11 +38,12 @@ class App extends Component {
   }
 }
 function mapStateToProps(state, ownProps){
+  console.log(state);
   return {
     user: state.user,
     userLoading: state.loading.user,
-    preferences: state.preferences
-
+    preferences: state.preferences,
+    location: state.location.location
   }
 }
 
