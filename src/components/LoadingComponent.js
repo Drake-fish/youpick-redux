@@ -13,9 +13,6 @@ class LoadingComponent extends Component {
         if (userLoading === undefined) {
             getUser();
         }
-        // if (preferencesLoading === undefined ){
-        //   this.props.getPreferences();
-        // }
     }
 
     render() {

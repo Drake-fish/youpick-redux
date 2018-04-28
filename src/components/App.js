@@ -7,15 +7,12 @@ import { fetchProducts } from '../actions/dineActions';
 import { getLocation } from '../actions/locationAction';
 
 class App extends Component {
-  componentWillMount(){
+
+  handleFood = () =>{
     if(this.props.location === null){
       this.props.getLocation();
     };
-
-  }
-  handleFood = () =>{
-    const { fetchProducts } = this.props;
-    fetchProducts();
+    this.props.history.push('/loadingFood');
   }
   render() {
     const divHeight= {

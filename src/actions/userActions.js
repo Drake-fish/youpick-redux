@@ -1,6 +1,5 @@
 import { auth, googleProvider, twitterProvider } from '../firebase';
-import { GET_USER, USER_STATUS } from '../actionTypes';
-import { GET_PREFERENCES } from '../actionTypes';
+import { GET_USER, USER_STATUS, GET_PREFERENCES, CLEAR_PREFERENCES } from '../actionTypes';
 import { database } from '../firebase';
 
 export function googleLogin(){
@@ -69,5 +68,10 @@ export function getUser(){
 }
 
 export function logout(){
-  return dispatch => auth.signOut();
+  return dispatch => {
+    auth.signOut();
+    dispatch({
+      type:CLEAR_PREFERENCES
+    })
+  }
 }

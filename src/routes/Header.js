@@ -23,6 +23,7 @@ class Header extends Component{
       }
   }
   render(){
+    //TODO Break out error into it's own component!
     console.log(this.state.error);
     let error;
     if(this.state.error != ''){

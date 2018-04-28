@@ -3,7 +3,7 @@ import {
   GET_LOCATION_SUCCESS,
   GET_LOCATION_FAILURE
 } from '../actions/locationAction';
-
+// error:'',location:null,loadingLocation:false
 
 export default function locationReducer(state = {error:'',location:null,loadingLocation:false}, action) {
   switch(action.type) {

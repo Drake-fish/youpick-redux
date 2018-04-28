@@ -18,13 +18,13 @@ export const fetchProductsError = error => ({
   payload: { error }
 });
 
-export function fetchProducts() {
+export function fetchProducts(lat, long, term) {
   return dispatch => {
     dispatch({
       type: FETCH_PRODUCTS_BEGIN,
       payload:true
     });
-    fetchJsonp('https://api.foursquare.com/v2/venues/search?ll=40.7,-74&client_id=BFDZ2UKIEXJ3WD1E41DPJPUHQV41JTBD32KBOKEQTXZWNBFF&client_secret=SDOKZTKCJN0YKEQUQIDFM21DJIHFBPNA4T1TVOJ2PWUU2ZN4&v=20180424')
+    fetchJsonp(`https://api.foursquare.com/v2/venues/search?ll=${long},${lat}&client_id=BFDZ2UKIEXJ3WD1E41DPJPUHQV41JTBD32KBOKEQTXZWNBFF&client_secret=SDOKZTKCJN0YKEQUQIDFM21DJIHFBPNA4T1TVOJ2PWUU2ZN4&v=20180424&query=${term}`)
       .then(function(response) {
         return response.json()
       }).then(function(json) {

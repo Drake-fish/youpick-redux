@@ -1,11 +1,13 @@
-import { GET_PREFERENCES } from '../actionTypes';
+import { GET_PREFERENCES, CLEAR_PREFERENCES } from '../actionTypes';
 
 const initialState = {}
 
 export default function(state = {}, action){
   switch(action.type){
     case GET_PREFERENCES :
-      return action.payload;
+      return action.payload
+    case CLEAR_PREFERENCES :
+      return null
     default :
       return state;
   }

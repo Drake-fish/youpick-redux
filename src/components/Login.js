@@ -22,7 +22,7 @@ class Login extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.user !== null) {
             this.props.getPreferences(nextProps.user.uid);
-            nextProps.history.push('/preferences');
+            nextProps.history.push('/');
         }
 
     }
@@ -51,7 +51,7 @@ class Login extends Component {
       let confirmPassword = this.state.confirmPassword;
       if(password === confirmPassword){
         registerEmail(email,password);
-        
+
 
       }else {
         alert('Passwords DO NOT MATCH');

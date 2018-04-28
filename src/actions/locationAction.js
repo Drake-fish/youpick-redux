@@ -27,10 +27,10 @@ export function getLocation() {
 
   function success(pos) {
     var crd = pos.coords;
-    console.log(crd);
+    console.log(crd.latitude);
     dispatch({
       type:GET_LOCATION_SUCCESS,
-      payload:crd
+      payload:{latitude:crd.latitude,longitude:crd.longitude}
     });
   }
 

@@ -6,26 +6,35 @@ import _ from 'lodash';
 import Preference from './Preference';
 
 class PreferencePage extends Component {
-
+  componentWillMount(){
+    if(this.props.preferences === null){
+      this.props.history.push('/');
+    }
+  }
   render() {
-    // console.log("PROPS AT PREFRERENCE", this.props.preferences.food);
+    let foodPrefs;
+    let playPrefs;
       const { preferences } = this.props;
+      console.log(preferences);
+      if(preferences !== null){
+        foodPrefs=_.map(preferences.food, (food,id)=>{
+          let key=id;
+          return _.map(food, (status,pref)=>{
+            console.log(pref,status, key);
+            return <Preference key={id} editPreference={this.props.editPreference} section={"food"} user={this.props.user.uid} pref={pref} id={key} status={status}/>
+          })
+        });
+    //populate the play preferences
+        playPrefs=_.map(preferences.play, (play,id)=>{
+          let key=id;
+          return _.map(play, (status,pref)=>{
+            console.log(pref,status, key);
+            return <Preference key={id} editPreference={this.props.editPreference} section={"play"} user={this.props.user.uid} pref={pref} id={key} status={status}/>
+          })
+        });
+      }
 //populate the food preferences
-    let foodPrefs=_.map(preferences.food, (food,id)=>{
-      let key=id;
-      return _.map(food, (status,pref)=>{
-        console.log(pref,status, key);
-        return <Preference key={id} editPreference={this.props.editPreference} section={"food"} user={this.props.user.uid} pref={pref} id={key} status={status}/>
-      })
-    });
-//populate the play preferences
-    let playPrefs=_.map(preferences.play, (play,id)=>{
-      let key=id;
-      return _.map(play, (status,pref)=>{
-        console.log(pref,status, key);
-        return <Preference key={id} editPreference={this.props.editPreference} section={"play"} user={this.props.user.uid} pref={pref} id={key} status={status}/>
-      })
-    });
+
 
     return (
       <div>
