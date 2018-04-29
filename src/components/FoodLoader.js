@@ -8,15 +8,12 @@ class FoodLoader extends Component {
   componentWillMount(){
     //IF we have the users location, let's go ahead and make our selection.
     if(this.props.location){
-      console.log("LOCATION AT MOUNT",this.props.location);
-      this.selections(this.props.location.latitude, this.props.location.longitude);
+      this.selections(this.props.location.longitude, this.props.location.latitude);
     }
   }
   componentWillReceiveProps(nextProps){
-    const { fetchProducts, preferences } = this.props;
     //when we get the users location let's call for the food
     if(nextProps.location !== null){
-      console.log("LOcation inside the component will recieve props", nextProps.location)
       this.selections(nextProps.location.longitude, nextProps.location.latitude);
     }
 
@@ -26,24 +23,21 @@ class FoodLoader extends Component {
     }
   }
   selections = (lat,long) => {
-    const { fetchProducts, preferences, location } = this.props;
+    const { fetchProducts, preferences } = this.props;
     let foodSelections;
     //if there are no preferences we will give the user preferences and select a random one.
     if(!preferences){
       foodSelections=_.first(_.shuffle(['american','mexican','french']));
-      console.log("food Selection WITH NO Preferences", foodSelections, this.props);
       fetchProducts(lat,long,foodSelections);
     //if they do have preferences we will loop through those and select only the True values and select a random one.
     }else{
       let selections=[];
       foodSelections=_.mapObject(preferences.food, (food,status) => {
-        if(_.values(food)){
+        if(_.values(food)[0]){
           selections.push(_.keys(food));
         }
       });
-      console.log("THIS PROPS AT FOOD LOADER", this.props);
       let finalSelection = _.first(_.shuffle(selections))[0];
-      console.log("FINAL SELECTION", finalSelection)
       fetchProducts(lat,long,finalSelection);
     }
   }

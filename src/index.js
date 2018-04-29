@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers'
 
-import { BrowserRouter, Switch, Route, Link, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Login from './components/Login';
 import AuthenticatedComponent from './components/AuthenticatedComponent';
 import Result from './components/Result';

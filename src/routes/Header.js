@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getUser, logout } from '../actions/userActions';
 import { getLocation } from '../actions/locationAction';
@@ -26,7 +26,7 @@ class Header extends Component{
     //TODO Break out error into it's own component!
     console.log(this.state.error);
     let error;
-    if(this.state.error != ''){
+    if(this.state.error !== ''){
       error=(
         <div className="no-location">
           <h2>Location was not found!</h2>

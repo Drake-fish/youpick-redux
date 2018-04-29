@@ -23,7 +23,9 @@ export default function productReducer(state = {}, action) {
       return {
         ...state,
         loadingResults: false,
-        items: action.payload.venues
+        items: action.payload.groups[0].items,
+        query: action.payload.query
+
       };
 
     case FETCH_PRODUCTS_FAILURE:

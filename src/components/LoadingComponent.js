@@ -8,7 +8,7 @@ import { getUser } from '../actions/userActions';
 class LoadingComponent extends Component {
     componentWillMount() {
       console.log(this.props);
-        const { userLoading, getUser, preferencesLoading } = this.props;
+        const { userLoading, getUser } = this.props;
         // if we havent tried to load the user, load user
         if (userLoading === undefined) {
             getUser();
@@ -16,7 +16,7 @@ class LoadingComponent extends Component {
     }
 
     render() {
-        const { userLoading,  children } = this.props;
+        const { userLoading,  children, user } = this.props;
         /**
          * throughout the lifetime of app user and notes loading status will
          * keep toggling between true and false
@@ -25,7 +25,7 @@ class LoadingComponent extends Component {
          * that time, show the enclosing components
          * for everything else and inbetween show Loading
          */
-        if (!userLoading || this.props.user === null) {
+        if (!userLoading || user === null) {
             return <div>{children}</div>;
         } else {
             return <div>LOADING...</div>;

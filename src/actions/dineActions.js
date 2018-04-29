@@ -1,5 +1,6 @@
 
 import fetchJsonp from 'fetch-jsonp';
+import { client_secret, client_id } from '../config';
 export const FETCH_PRODUCTS_BEGIN= 'FETCH_PRODUCTS_BEGIN';
 export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
 export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
@@ -24,7 +25,7 @@ export function fetchProducts(lat, long, term) {
       type: FETCH_PRODUCTS_BEGIN,
       payload:true
     });
-    fetchJsonp(`https://api.foursquare.com/v2/venues/search?ll=${long},${lat}&client_id=BFDZ2UKIEXJ3WD1E41DPJPUHQV41JTBD32KBOKEQTXZWNBFF&client_secret=SDOKZTKCJN0YKEQUQIDFM21DJIHFBPNA4T1TVOJ2PWUU2ZN4&v=20180424&query=${term}`)
+    fetchJsonp(`https://api.foursquare.com/v2/venues/explore?ll=${long},${lat}&client_id=${client_id}&client_secret=${client_secret}&v=20180424&query=${term}&openNow=1&limit=1`)
       .then(function(response) {
         return response.json()
       }).then(function(json) {
@@ -33,6 +34,7 @@ export function fetchProducts(lat, long, term) {
           type:FETCH_PRODUCTS_SUCCESS,
           payload:json.response
         });
+
       }).catch(function(ex) {
         console.log('parsing failed', ex)
         dispatch({

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { savePreference, getPreferences } from '../actions/preferenceActions';
+import { getPreferences } from '../actions/preferenceActions';
 import { googleLogin, twitterLogin, loginEmail, registerEmail } from '../actions/userActions';
 import '../styles/login.css';
 
@@ -44,7 +44,7 @@ class Login extends Component {
     });
   }
   handleRegister = (e) => {
-    const { registerEmail, savePreference } = this.props;
+    const { registerEmail } = this.props;
     e.preventDefault();
       let email = this.state.email;
       let password = this.state.password;
@@ -189,4 +189,4 @@ function mapStateToProps(state, onwProps) {
     };
 }
 
-export default connect(mapStateToProps, { googleLogin, twitterLogin, loginEmail, registerEmail, getPreferences, savePreference })(Login);
+export default connect(mapStateToProps, { googleLogin, twitterLogin, loginEmail, registerEmail, getPreferences })(Login);

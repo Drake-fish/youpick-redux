@@ -10,15 +10,16 @@ class Preference extends Component {
   handleChange = () => {
     console.log("CHANGING STATUS");
     this.setState({isChecked: !this.state.isChecked});
-    const { pref, status } = this.props;
-    this.props.editPreference(this.props.user, {[this.props.pref]:!this.state.isChecked}, this.props.id, this.props.section);
+    const { pref, user, editPreference, id, section } = this.props;
+    editPreference(user, {[pref]:!this.state.isChecked}, id, section);
 
   }
   render() {
+    const { pref } = this.props;
     console.log(this.props);
     return (
       <div className="liked-item">
-        <h4>{this.props.pref}</h4>
+        <h4>{pref}</h4>
         <label className="switch">
         <input checked={this.state.isChecked} onChange={this.handleChange}
         type="checkbox"/>
