@@ -1,0 +1,67 @@
+.result h2 {
+  text-align: center;
+  margin: 1rem;
+}
+
+.details-container {
+  width: 350px;
+  margin: 0 auto;
+  background-color: #f3f3f3;
+}
+
+.details-container img {
+  width: 48%;
+  height: 135px;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+.photo-1 {
+  margin-right: 10px;
+}
+
+.venue-title {
+  letter-spacing: 7px;
+  padding: 1rem;
+  background: black;
+  color: white;
+  margin: 0;
+}
+
+.details-container p {
+  padding: 1rem;
+}
+
+.fa-angle-right {
+  float: right;
+}
+
+.photo-container {
+  padding: 1rem;
+}
+
+.footer {
+  padding: 0;
+  list-style: none;
+  width: 100%;
+  margin: 0;
+}
+
+.footer li {
+  text-align: center;
+  display: inline-block;
+  width: 25%;
+  box-sizing: border-box;
+  padding: 1rem;
+  border-right: 1px solid grey;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+
+.footer li:last-of-type {
+  border-right: none;
+}
+
+.footer h5 {
+  margin: 0;
+}

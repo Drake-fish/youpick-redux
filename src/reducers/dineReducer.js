@@ -1,7 +1,8 @@
 import {
   FETCH_PRODUCTS_BEGIN,
   FETCH_PRODUCTS_SUCCESS,
-  FETCH_PRODUCTS_FAILURE
+  FETCH_PRODUCTS_FAILURE,
+  CLEAR
 } from '../actions/dineActions';
 
 
@@ -23,11 +24,10 @@ export default function productReducer(state = {}, action) {
       return {
         ...state,
         loadingResults: false,
-        items: action.payload.groups[0].items,
-        query: action.payload.query
-
+        items: action.payload.items.groups[0].items[0],
+        query: action.payload.items.query,
+        details:action.payload.details.venue
       };
-
     case FETCH_PRODUCTS_FAILURE:
       // The request failed, but it did stop, so set loading to "false".
       // Save the error, and we can display it somewhere
@@ -39,7 +39,14 @@ export default function productReducer(state = {}, action) {
         loading: false,
         error: action.payload.error,
       };
-
+    case CLEAR :
+    return {
+      ...state,
+      loadingResults:false,
+      items:null,
+      query:null,
+      details:null
+    }
     default:
       // ALWAYS have a default case in a reducer
       return state;
