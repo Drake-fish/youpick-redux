@@ -26,6 +26,11 @@
   background: black;
   color: white;
   margin: 0;
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 .details-container p {
@@ -45,6 +50,21 @@
   list-style: none;
   width: 100%;
   margin: 0;
+}
+
+.footer .footer-3 {
+  width: 33.33%;
+}
+
+.next {
+  text-align: center;
+  width: 50%;
+  padding: 1rem;
+  border: 1px solid black;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  background: black;
+  color: white;
 }
 
 .footer li {

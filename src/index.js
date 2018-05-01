@@ -14,11 +14,12 @@ import rootReducer from './reducers'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Login from './components/Login';
 import AuthenticatedComponent from './components/AuthenticatedComponent';
-import Result from './components/Result';
+import FoodResultsPage from './components/FoodResultsPage';
 import EditPreference from './components/EditPreference';
 import PreferencePage from './components/PreferencePage';
 import LoadingComponent from './components/LoadingComponent';
 import FoodLoader from './components/FoodLoader';
+import PlayResultsPage from './components/PlayResultsPage';
 
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
@@ -33,7 +34,8 @@ ReactDOM.render(<Provider store = { store }>
                           <Route path="/login" component={Login} exact={true}/>
                           <Redirect from="/logout" to="/"/>
                           <Route path="/loadingFood" component={FoodLoader} exact={true}/>
-                          <Route path="/results" component={Result} exact={true}/>
+                          <Route path="/foodresult" component={FoodResultsPage} exact={true}/>
+                          <Route path="/playresult" component={PlayResultsPage} exact={true}/>
                           <Route path="/" component={App} exact={true}/>
                             <AuthenticatedComponent>
                               <Route path="/preferences/:id/edit" component={EditPreference} exact={true} />

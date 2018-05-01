@@ -12,19 +12,26 @@ class App extends Component {
     if(this.props.location === null){
       this.props.getLocation();
     };
-    this.props.history.push('/loadingFood');
+    this.props.history.push('/foodresult');
+  }
+  handlePlay = () => {
+    if(this.props.location === null){
+      this.props.getLocation();
+    }
+    this.props.history.push('/playresult');
   }
   render() {
     const divHeight= {
-      height:window.innerHeight/3 - 20
+      height:window.outerHeight/3 - 40
     }
+    console.log(window);
 
     return (
       <div className="App">
         <div style={divHeight} onClick={this.handleFood} className="search-card food">
           <h4 className="search-title">DINE</h4>
         </div>
-        <div style={divHeight} className="search-card play">
+        <div style={divHeight} onClick={this.handlePlay} className="search-card play">
           <h4 className="search-title">PLAY</h4>
         </div>
         <div style={divHeight} className="search-card search">

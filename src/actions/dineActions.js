@@ -36,12 +36,10 @@ export function fetchProducts(lat, long, term) {
           var items = json.response;
             fetchJsonp(`https://api.foursquare.com/v2/venues/${json.response.groups[0].items[0].venue.id}?client_id=${client_id}&client_secret=${client_secret}&v=20180424`)
             .then(function(response) {
-              console.log(response);
               return response.json()
             })
             .then(function(json) {
               venueDetails=json.response;
-              console.log(items, json.response);
               dispatch({
                 type:FETCH_PRODUCTS_SUCCESS,
                 payload:{items:items, details:json.response}

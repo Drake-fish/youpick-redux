@@ -35,7 +35,6 @@ export function savePreference(userID, preference){
     database.ref(`/youpick/users/${userID}/preferences`).push(preference);
   }
 }
-//find the child note and update with the new note.
 export function editPreference(userID, preference, id, section){
 
   return dispatch => {
