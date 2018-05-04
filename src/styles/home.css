@@ -30,4 +30,51 @@
   width: 100%;
   top: 50%;
   margin-top: -33px;
+  transition: .3s ease-in-out;
+}
+
+.search-title-closed {
+  opacity: 0;
+}
+
+.search-box {
+  margin: 0 auto;
+  position: relative;
+  padding-top: 104px;
+  width: 0;
+  transition: .3s ease-in-out;
+}
+
+.search-box-open {
+  width: 208px;
+  margin: 0 auto;
+  position: relative;
+  padding-top: 104px;
+  transition: .3s ease-in-out;
+}
+
+.search-text {
+  width: 0;
+  height: 20px;
+  transition: .3s ease-in-out;
+}
+
+.search-text-open {
+  width: 208px;
+  transition: .3s ease-in-out;
+}
+
+.fa-search {
+  position: absolute;
+  opacity: 0;
+  top: 104px;
+  right: -6px;
+  background: grey;
+  padding: 5px;
+  color: white;
+  transition: .3s ease-in-out;
+}
+
+.fa-search-open {
+  opacity: 1;
 }

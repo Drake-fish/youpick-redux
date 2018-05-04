@@ -2,20 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../styles/result.css';
 import { clearResults } from '../actions/dineActions';
-import { fetchProducts } from '../actions/dineActions';
+import { fetchProducts, selectTerm } from '../actions/dineActions';
 import PlayLoader from './PlayLoader';
-import Result from './Result';
 import _ from 'underscore';
+import Result from './Result';
 
-class PlayResultsPage extends Component {
+class ResultsPage extends Component {
   componentWillMount(){
+
     const { location, loadingLocation, loadingResults, details, history } = this.props;
+    console.log(history);
     //IF we have the users location, let's go ahead and make our selection.
     if(location){
       this.selections(location.longitude, location.latitude);
-    }
-    if(!loadingLocation && !loadingResults && !details){
-      history.push('/');
     }
   }
   componentDidUpdate(prevProps, prevState){
@@ -28,22 +27,10 @@ class PlayResultsPage extends Component {
     this.selections(this.props.location.longitude, this.props.location.latitude);
   }
   selections = (lat,long) => {
-    const { fetchProducts, preferences } = this.props;
-    let foodSelections;
-    //if there are no preferences we will give the user preferences and select a random one.
-    if(!preferences){
-      foodSelections=_.first(_.shuffle(['Arcades', 'Bars', 'Bingo', 'BookStores', 'Bowling', 'Coffee', 'Escape', 'LaserTag', 'Movies', 'Museums', 'Shopping', 'Spas', 'Trampolines', 'Amusement', 'Aquariums', 'BikeRentals', 'Breweries', 'Canoeing', 'GoKarts', 'Kayaking', 'Hiking', 'Minigolf', 'Movies', 'PaddleBoarding', 'Paintball', 'Tours', 'Swimming', 'Tubing', 'Ziplining', 'Zoos', 'Wineries', ]));
-      fetchProducts(lat,long,foodSelections);
-    //if they do have preferences we will loop through those and select only the True values and select a random one.
-    }else{
-      let selections=[];
-      foodSelections=_.mapObject(preferences.play, (food,status) => {
-        if(_.values(food)[0]){
-          selections.push(_.keys(food));
-        }
-      });
-      let finalSelection = _.first(_.shuffle(selections))[0];
-      fetchProducts(lat,long,finalSelection);
+    const { fetchProducts, preferences, selectTerm, history } = this.props;
+    let term = selectTerm(preferences,history.location.pathname.split('/')[1]);
+    if(term){
+      fetchProducts(lat,long,term);
     }
   }
   render() {
@@ -71,7 +58,6 @@ class PlayResultsPage extends Component {
     );
   }
   componentWillUnmount(){
-    console.log("UNMOUNTING COMPONETN CLEARING SHIT");
     this.props.clearResults();
   }
 }
@@ -89,4 +75,4 @@ function mapStateToProps(state, ownProps){
   }
 }
 
-export default connect(mapStateToProps, { clearResults, fetchProducts })(PlayResultsPage);
+export default connect(mapStateToProps, { clearResults, fetchProducts, selectTerm })(ResultsPage);
