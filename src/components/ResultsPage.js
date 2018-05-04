@@ -29,24 +29,29 @@ class ResultsPage extends Component {
   selections = (lat,long) => {
     const { fetchProducts, preferences, selectTerm, history } = this.props;
     let term = selectTerm(preferences,history.location.pathname.split('/')[1]);
-    if(term){
+    let search=history.location.pathname.split('/')[2];
+    if(term && !search){
       fetchProducts(lat,long,term);
+    }else{
+      fetchProducts(lat,long,search);
     }
   }
   render() {
-    const { result, details, location, loadingResults, loadingLocation } = this.props;
+    const { result, details, location, loadingResults, loadingLocation, dine, history } = this.props;
     let results;
 
     if(!details && !location){
       results=(
-        <PlayLoader/>
+        <PlayLoader message='Loading Location'/>
       );
-    }else if(location && !details){
+    }else if(location && !details && dine.loadingResults){
       results=(
-        <PlayLoader/>
+        <PlayLoader message='Searching for something awesome!'/>
       );
-    }else if(location && details){
+    }else if(location && details && !dine.loadingResults){
       results=<Result details={details} result={result} loadNext={this.loadNext}/>
+    }else if(location && dine.error === 'error'){
+      results=<div>NO RESULTS</div>
     }
     console.log("RESULTS", this.props.result, "DETAILS", this.props.details);
 
@@ -64,6 +69,7 @@ class ResultsPage extends Component {
 function mapStateToProps(state, ownProps){
   console.log("STate at results page", state);
   return {
+    dine:state.dine,
     result:state.dine.query,
     loadingResults:state.dine.loadingResults,
     details:state.dine.details,

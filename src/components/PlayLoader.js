@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import '../styles/loader.css';
 
-class PlayLoader extends Component {
-  render() {
-    return (
-      <div className="loader">
-        <h3>SELECTING SOMETHING AWESOME!</h3>
-      </div>
-    );
-  }
+const PlayLoader= (props) => {
+  console.log(props);
+  return(
+    <div className="loader">
+      <h3>{props.message}</h3>
+    </div>
+  )
 }
 
 export default PlayLoader;

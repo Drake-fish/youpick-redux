@@ -18,7 +18,7 @@ import ResultsPage from './components/ResultsPage';
 import EditPreference from './components/EditPreference';
 import PreferencePage from './components/PreferencePage';
 import LoadingComponent from './components/LoadingComponent';
-import SearchResultPage from './components/searchResultPage';
+
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -33,7 +33,7 @@ ReactDOM.render(<Provider store = { store }>
                           <Redirect from="/logout" to="/"/>
                           <Route path="/food" component={ResultsPage} exact={true}/>
                           <Route path="/play" component={ResultsPage} exact={true}/>
-                          <Route path="/searchresult/:term" component={SearchResultPage} exact={true}/>
+                          <Route path="/searchresult/:term" component={ResultsPage} exact={true}/>
                           <Route path="/" component={App} exact={true}/>
                             <AuthenticatedComponent>
                               <Route path="/preferences/:id/edit" component={EditPreference} exact={true} />
