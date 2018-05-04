@@ -15,6 +15,8 @@ class ResultsPage extends Component {
     //IF we have the users location, let's go ahead and make our selection.
     if(location){
       this.selections(location.longitude, location.latitude);
+    }else if(!loadingLocation && !loadingResults && !location){
+      history.push('/');
     }
   }
   componentDidUpdate(prevProps, prevState){
@@ -24,7 +26,13 @@ class ResultsPage extends Component {
     }
   }
   loadNext = () =>{
-    this.selections(this.props.location.longitude, this.props.location.latitude);
+    const { history, location } = this.props;
+  //if we are coming from the search page, let's push the user back home.
+    if(history.location.pathname.split('/')[2]){
+      history.push('/');
+    }else{
+      this.selections(location.longitude, location.latitude);
+    }
   }
   selections = (lat,long) => {
     const { fetchProducts, preferences, selectTerm, history } = this.props;
@@ -40,17 +48,17 @@ class ResultsPage extends Component {
     const { result, details, location, loadingResults, loadingLocation, dine, history } = this.props;
     let results;
 
-    if(!details && !location){
+    if(loadingLocation){
       results=(
         <PlayLoader message='Loading Location'/>
       );
-    }else if(location && !details && dine.loadingResults){
+    }else if(loadingResults){
       results=(
         <PlayLoader message='Searching for something awesome!'/>
       );
-    }else if(location && details && !dine.loadingResults){
+    }else if(result){
       results=<Result details={details} result={result} loadNext={this.loadNext}/>
-    }else if(location && dine.error === 'error'){
+    }else if(dine.error === 'error'){
       results=<div>NO RESULTS</div>
     }
     console.log("RESULTS", this.props.result, "DETAILS", this.props.details);

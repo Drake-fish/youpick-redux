@@ -5,8 +5,15 @@ import {
   CLEAR
 } from '../actions/dineActions';
 
+let initialState= {
+                    details:null,
+                    error:null,
+                    items:null,
+                    loadingResults:false,
+                    query:null
+                  }
 
-export default function productReducer(state = {}, action) {
+export default function productReducer(state = initialState, action) {
   switch(action.type) {
     case FETCH_PRODUCTS_BEGIN:
       return {
@@ -32,11 +39,7 @@ export default function productReducer(state = {}, action) {
       };
     case CLEAR :
     return {
-      ...state,
-      loadingResults:false,
-      items:null,
-      query:null,
-      details:null
+      ...state
     }
     default:
       return state;

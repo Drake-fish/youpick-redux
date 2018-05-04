@@ -17,14 +17,6 @@ class LoadingComponent extends Component {
 
     render() {
         const { userLoading,  children, user } = this.props;
-        /**
-         * throughout the lifetime of app user and notes loading status will
-         * keep toggling between true and false
-         * when anything other than that toggling state such as true or false is in the state
-         * that means the loading operation is setteled and not active
-         * that time, show the enclosing components
-         * for everything else and inbetween show Loading
-         */
         if (!userLoading || user === null) {
             return <div>{children}</div>;
         } else {
