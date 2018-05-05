@@ -39,6 +39,10 @@ a {
 
 .details-container p {
   padding: .5rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  vertical-align: initial;
+  margin-left: 5px;
 }
 
 .photo-container {
@@ -56,6 +60,14 @@ a {
 
 .footer .footer-3 {
   width: 33.33%;
+}
+
+.footer .footer-3 .fas {
+  left: 45px;
+}
+
+.footer .footer-3 .far {
+  left: 45px;
 }
 
 .footer li a {
@@ -131,7 +143,7 @@ a {
 
 .description {
   opacity: 1;
-  height: 113px;
+  height: 79px;
   overflow: hidden;
   margin-left: 0;
   transition: .3s ease;
@@ -185,4 +197,23 @@ a {
 
 .hours h5 {
   margin: .3rem;
+}
+
+.user-container1 .user-image-container {
+  float: right;
+  margin-right: 1rem;
+}
+
+.user-container1 .tip-container {
+  margin-left: 1rem;
+  width: 223px;
+}
+
+.view-more {
+  text-align: center;
+  display: block;
+  text-decoration: underline;
+  color: black;
+  padding: .5rem;
+  background-color: #d8d5d57a;
 }

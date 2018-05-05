@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Footer from './footer';
+
 export default class Result extends Component{
   constructor(props){
     super(props);
@@ -25,38 +27,27 @@ export default class Result extends Component{
   const { details, result, loadNext, location } = this.props;
   const url = `https://www.google.com/maps/embed/v1/directions?origin=${location.latitude}%2C${location.longitude}&destination=${details.location.address}&key=AIzaSyDi7Dus0sr6U1ZjH_ixNtWF8fV2reeFDn0`
   let results;
-  let footer;
-    console.log('no description',details.tips.groups[0].items[0].text);
-  let description=(
-      <div className="user-container">
-        <div className="user-image-container">
-          <img className="user-image" src={`${details.tips.groups[0].items[0].user.photo.prefix}original${details.tips.groups[0].items[0].user.photo.suffix}`}/>
-        </div>
-        <div className="tip-container">
-          <p>{details.tips.groups[0].items[0].text}</p>
-        </div>
-      </div>
-    )
 
-  if(details.menu){
-    footer = (
-      <ul className="footer">
-        <li><a href={details.menu.url}><i className="far fa-file-alt"></i><h5>MENU</h5></a></li>
-        <li onClick={this.toggleMap}><i className="fas fa-map-marker-alt"></i><h5>MAP</h5></li>
-        <li onClick={this.toggleContact}><i className="fas fa-mobile-alt"></i><h5>CONTACT</h5></li>
-        <li><i className="far fa-thumbs-up"></i><h5>{details.likes.count} LIKES</h5></li>
-      </ul>
-    );
 
-  }else{
-    footer=(
-      <ul className="footer">
-        <li onClick={this.toggleMap} className='footer-3'><i className="fas fa-map-marker-alt"></i><h5>MAP</h5></li>
-        <li onClick={this.toggleContact} className='footer-3'><i className="fas fa-mobile-alt"></i><h5>CONTACT</h5></li>
-        <li className='footer-3'><i className="far fa-thumbs-up"></i><h5>{details.likes.count} LIKES</h5></li>
-      </ul>
-    );
-  }
+  // if(details.menu){
+  //   footer = (
+  //     <ul className="footer">
+  //       <li><a href={details.menu.url}><i className="far fa-file-alt"></i><h5>MENU</h5></a></li>
+  //       <li onClick={this.toggleMap}><i className="fas fa-map-marker-alt"></i><h5>MAP</h5></li>
+  //       <li onClick={this.toggleContact}><i className="fas fa-mobile-alt"></i><h5>CONTACT</h5></li>
+  //       <li><i className="far fa-thumbs-up"></i><h5>{details.likes.count} LIKES</h5></li>
+  //     </ul>
+  //   );
+  //
+  // }else{
+  //   footer=(
+  //     <ul className="footer">
+  //       <li onClick={this.toggleMap} className='footer-3'><i className="fas fa-map-marker-alt"></i><h5>MAP</h5></li>
+  //       <li onClick={this.toggleContact} className='footer-3'><i className="fas fa-mobile-alt"></i><h5>CONTACT</h5></li>
+  //       <li className='footer-3'><i className="far fa-thumbs-up"></i><h5>{details.likes.count} LIKES</h5></li>
+  //     </ul>
+  //   );
+  // }
 
   results=(
       <div>
@@ -72,10 +63,24 @@ export default class Result extends Component{
           </div>
           <div className="contact">
           </div>
-          <div className="description">
-            {description}
+              <div className="comments-container">
+                {details.tips.groups[0].items.map((tip,i) => {
+                return (
+                <div className="description">
+                  <div className={`user-container${i}`}>
+                    <div className="user-image-container">
+                      <img className="user-image" src={`${tip.user.photo.prefix}original${tip.user.photo.suffix}`}/>
+                    </div>
+                    <div className="tip-container">
+                      <p>{tip.text}</p>
+                    </div>
+                    </div>
+                </div>
+                );
+              })}
+              <a href={details.canonicalUrl}><span className="view-more">View More</span></a>
           </div>
-          {footer}
+          <Footer details={details} toggleMap={this.toggleMap} toggleContact={this.toggleContact}/>
         </div>
       </div>
   );
@@ -96,9 +101,16 @@ export default class Result extends Component{
           <div className="contact">
           </div>
           <div className="description description-hidden">
-            {description}
+            <div className="user-container">
+              <div className="user-image-container">
+                <img className="user-image" src={`${details.tips.groups[0].items[0].user.photo.prefix}original${details.tips.groups[0].items[0].user.photo.suffix}`}/>
+              </div>
+              <div className="tip-container">
+                <p>{details.tips.groups[0].items[0].text}</p>
+              </div>
+            </div>
           </div>
-          {footer}
+          <Footer details={details} toggleMap={this.toggleMap} toggleContact={this.toggleContact}/>
         </div>
       </div>
     )
@@ -117,10 +129,10 @@ export default class Result extends Component{
             <iframe className="map" src={url}></iframe>
           </div>
           <div className="contact contact-open">
-            <h4>{details.hours.status}</h4>
+          {details.hours !== undefined && <h4>{details.hours.status}</h4>}
             <div className="hours">
             <h4>Hours of Operation</h4>
-            {details.hours.timeframes.map((hour) => {
+            {details.hours !== undefined && details.hours.timeframes.map((hour) => {
               return (<h5>{hour.days} {hour.open[0].renderedTime}</h5>);
             })}
             </div>
@@ -128,9 +140,16 @@ export default class Result extends Component{
 
           </div>
           <div className="description description-hidden">
-            {description}
+            <div className="user-container">
+              <div className="user-image-container">
+                <img className="user-image" src={`${details.tips.groups[0].items[0].user.photo.prefix}original${details.tips.groups[0].items[0].user.photo.suffix}`}/>
+              </div>
+              <div className="tip-container">
+                <p>{details.tips.groups[0].items[0].text}</p>
+              </div>
+            </div>
           </div>
-          {footer}
+          <Footer details={details} toggleMap={this.toggleMap} toggleContact={this.toggleContact}/>
         </div>
       </div>
     );
