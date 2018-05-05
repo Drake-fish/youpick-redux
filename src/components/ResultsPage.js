@@ -57,7 +57,7 @@ class ResultsPage extends Component {
         <PlayLoader message='Searching for something awesome!'/>
       );
     }else if(result){
-      results=<Result details={details} result={result} loadNext={this.loadNext}/>
+      results=<Result location={location} details={details} result={result} loadNext={this.loadNext}/>
     }else if(dine.error === 'error'){
       results=<div>NO RESULTS</div>
     }

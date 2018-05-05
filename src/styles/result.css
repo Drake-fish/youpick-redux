@@ -8,6 +8,9 @@
   margin: 0 auto;
   background-color: #f3f3f3;
   border: 1px solid black;
+  overflow: hidden;
+  height: 492px;
+  position: relative;
 }
 
 .details-container img {
@@ -35,11 +38,7 @@ a {
 }
 
 .details-container p {
-  padding: 1rem;
-}
-
-.fa-angle-right {
-  float: right;
+  padding: .5rem;
 }
 
 .photo-container {
@@ -51,10 +50,16 @@ a {
   list-style: none;
   width: 100%;
   margin: 0;
+  position: absolute;
+  bottom: 0;
 }
 
 .footer .footer-3 {
   width: 33.33%;
+}
+
+.footer li a {
+  color: black;
 }
 
 .next {
@@ -73,11 +78,24 @@ a {
   text-align: center;
   display: inline-block;
   width: 25%;
+  height: 57px;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 1rem;
   border-right: 1px solid grey;
   border-top: 1px solid grey;
   border-bottom: 1px solid grey;
+  position: relative;
+}
+
+.footer .fas, .far {
+  position: absolute;
+  top: -19px;
+  background: white;
+  border-radius: 50%;
+  left: 29px;
+  padding: .3rem;
+  background-color: #f3f3f3;
+  font-size: 1.5rem;
 }
 
 .footer li:last-of-type {
@@ -86,4 +104,85 @@ a {
 
 .footer h5 {
   margin: 0;
+  font-size: .7rem;
+  margin-top: 22px;
+}
+
+.map-container {
+  position: absolute;
+  left: -321px;
+  transition: .3s ease;
+}
+
+.contact {
+  margin-left: -172px;
+  transition: .3s ease;
+}
+
+.map-open {
+  left: 1rem;
+  transition: .3s ease;
+}
+
+.contact-open {
+  margin-left: 0;
+  transition: .3s ease;
+}
+
+.description {
+  opacity: 1;
+  height: 113px;
+  overflow: hidden;
+  margin-left: 0;
+  transition: .3s ease;
+}
+
+.description-hidden {
+  opacity: 0;
+  margin-left: 0;
+  transition: .3s ease;
+}
+
+.user-image-container {
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.details-container .user-image {
+  width: 79px;
+  height: auto;
+  border-radius: 12px;
+}
+
+.tip-container {
+  display: inline-block;
+  width: 241px;
+  vertical-align: middle;
+}
+
+.fa-angle-right {
+  float: right;
+}
+
+.contact-open h4 {
+  font-size: 1rem;
+  color: black;
+  margin-bottom: 1rem;
+}
+
+.contact-open {
+  text-align: center;
+}
+
+.hours {
+  margin-bottom: 1rem;
+}
+
+.hours h4 {
+  text-decoration: underline;
+  margin-bottom: 1rem;
+}
+
+.hours h5 {
+  margin: .3rem;
 }
