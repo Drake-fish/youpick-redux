@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import '../styles/result.css';
 import { clearResults } from '../actions/dineActions';
 import { fetchProducts, selectTerm } from '../actions/dineActions';
+import { openMap, openContact, openLikes } from '../actions/resultActions';
 import PlayLoader from './PlayLoader';
 import _ from 'underscore';
 import Result from './Result';
@@ -10,7 +11,7 @@ import Result from './Result';
 class ResultsPage extends Component {
   componentWillMount(){
 
-    const { location, loadingLocation, loadingResults, details, history } = this.props;
+    const { location, loadingLocation, loadingResults, history } = this.props;
     console.log(history);
     //IF we have the users location, let's go ahead and make our selection.
     if(location){
@@ -45,7 +46,8 @@ class ResultsPage extends Component {
     }
   }
   render() {
-    const { result, details, location, loadingResults, loadingLocation, dine, history } = this.props;
+    console.log(openMap, openContact);
+    const { result, mapOpen, contactOpen, details, location, loadingResults, loadingLocation, dine, history, openMap, openContact, openLikes } = this.props;
     let results;
 
     if(loadingLocation){
@@ -57,7 +59,7 @@ class ResultsPage extends Component {
         <PlayLoader message='Searching for something awesome!'/>
       );
     }else if(result){
-      results=<Result location={location} details={details} result={result} loadNext={this.loadNext}/>
+      results=<Result mapOpen={mapOpen} contactOpen={contactOpen} toggleMap={openMap} toggleLikes={openLikes} toggleContact={openContact} location={location} details={details} result={result} loadNext={this.loadNext}/>
     }else if(dine.error === 'error'){
       results=<div>NO RESULTS</div>
     }
@@ -84,9 +86,11 @@ function mapStateToProps(state, ownProps){
     preferences:state.preferences,
     items:state.dine.items,
     location:state.location.location,
-    loadingLocation:state.location.loadingLocation
+    loadingLocation:state.location.loadingLocation,
+    mapOpen:state.results.mapOpen,
+    contactOpen:state.results.contactOpen
 
   }
 }
 
-export default connect(mapStateToProps, { clearResults, fetchProducts, selectTerm })(ResultsPage);
+export default connect(mapStateToProps, { clearResults, fetchProducts, selectTerm, openMap, openContact, openLikes })(ResultsPage);

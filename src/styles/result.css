@@ -20,7 +20,7 @@
   box-sizing: border-box;
 }
 
-.photo-1 {
+.photo-0 {
   margin-right: 10px;
 }
 
@@ -58,17 +58,49 @@ a {
   bottom: 0;
 }
 
+/* .footer .footer-3 .footer-map-open {
+  background: #c9ecfd;
+  transition: .3s ease;
+}
+
 .footer .footer-3 {
   width: 33.33%;
+  background: #f3f3f3;
+  transition: .3s ease;
+}
+
+.footer li .footer-3 .footer-contact-open {
+  background: #c9ecfd;
+  transition: .3s ease;
 }
 
 .footer .footer-3 .fas {
   left: 45px;
+  color: black;
+} */
+
+.footer-likes-open {
+  background: #c9ecfd;
+  transition: .3s ease;
 }
 
-.footer .footer-3 .far {
-  left: 45px;
+.footer-3 {
+  text-align: center;
+  display: inline-block;
+  height: 57px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-right: 1px solid grey;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  position: relative;
+  width: 33%;
 }
+
+/* .footer .footer-3 .far {
+  left: 45px;
+  color: black;
+} */
 
 .footer li a {
   color: black;
@@ -86,7 +118,7 @@ a {
   width: 318px;
 }
 
-.footer li {
+.footer-4 {
   text-align: center;
   display: inline-block;
   width: 25%;
@@ -99,12 +131,48 @@ a {
   position: relative;
 }
 
-.footer .fas, .far {
+.footer-map-open {
+  background: #c9ecfd;
+  transition: .3s ease;
+}
+
+/* .footer li .footer-3 {
+  width: 33%;
+} */
+
+.footer li .footer-contact-open {
+  background: #c9ecfd;
+  transition: .3s ease;
+}
+
+.footer-4 .fas, .far {
   position: absolute;
   top: -19px;
   background: white;
   border-radius: 50%;
   left: 29px;
+  padding: .3rem;
+  background-color: #f3f3f3;
+  font-size: 1.5rem;
+}
+
+.footer-4 .far {
+  position: absolute;
+  top: -19px;
+  background: white;
+  border-radius: 50%;
+  left: 29px;
+  padding: .3rem;
+  background-color: #f3f3f3;
+  font-size: 1.5rem;
+}
+
+.footer-3 .fas, .far {
+  position: absolute;
+  top: -19px;
+  background: white;
+  border-radius: 50%;
+  left: 43px;
   padding: .3rem;
   background-color: #f3f3f3;
   font-size: 1.5rem;
@@ -216,4 +284,14 @@ a {
   color: black;
   padding: .5rem;
   background-color: #d8d5d57a;
+}
+
+.footer-map-open {
+  background: #c9ecfd;
+  transition: .3s ease;
+}
+
+.footer-contact-open {
+  background: #c9ecfd;
+  transition: .3s ease;
 }
