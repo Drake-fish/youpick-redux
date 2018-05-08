@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../styles/result.css';
+import { Link } from 'react-router-dom';
 import { clearResults } from '../actions/dineActions';
 import { fetchProducts, selectTerm } from '../actions/dineActions';
 import { openMap, openContact, openLikes } from '../actions/resultActions';
@@ -9,6 +10,12 @@ import _ from 'underscore';
 import Result from './Result';
 
 class ResultsPage extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+                usedTerms:[]
+    }
+  }
   componentWillMount(){
 
     const { location, loadingLocation, loadingResults, history } = this.props;
@@ -27,7 +34,12 @@ class ResultsPage extends Component {
     }
   }
   loadNext = () =>{
-    const { history, location } = this.props;
+    const { history, location, dine } = this.props;
+    const { usedTerms } = this.state;
+    let newTerms=usedTerms.concat(dine.query);
+    this.setState({
+      usedTerms:newTerms
+    });
   //if we are coming from the search page, let's push the user back home.
     if(history.location.pathname.split('/')[2]){
       history.push('/');
@@ -37,7 +49,8 @@ class ResultsPage extends Component {
   }
   selections = (lat,long) => {
     const { fetchProducts, preferences, selectTerm, history } = this.props;
-    let term = selectTerm(preferences,history.location.pathname.split('/')[1]);
+    const { usedTerms } = this.state;
+    let term = selectTerm(preferences,history.location.pathname.split('/')[1],usedTerms);
     let search=history.location.pathname.split('/')[2];
     if(term && !search){
       fetchProducts(lat,long,term);
@@ -46,7 +59,6 @@ class ResultsPage extends Component {
     }
   }
   render() {
-    console.log(openMap, openContact);
     const { result, mapOpen, contactOpen, details, location, loadingResults, loadingLocation, dine, history, openMap, openContact, openLikes } = this.props;
     let results;
 
@@ -58,12 +70,21 @@ class ResultsPage extends Component {
       results=(
         <PlayLoader message='Searching for something awesome!'/>
       );
-    }else if(result){
+    }else if(result && dine.error === null){
       results=<Result mapOpen={mapOpen} contactOpen={contactOpen} toggleMap={openMap} toggleLikes={openLikes} toggleContact={openContact} location={location} details={details} result={result} loadNext={this.loadNext}/>
     }else if(dine.error === 'error'){
       results=<div>NO RESULTS</div>
+    }else if(dine.error !== null){
+      results=(
+        <div className="out-container">
+          <Link to="/"><i className="far fa-times-circle"></i></Link>
+          <h2>PICKY MUCH??</h2>
+          <h2>Looks like you are out of searches</h2>
+          <h2>Why not customize your </h2>
+          <Link to="/preferences"><span><i className="fas fa-cog"></i>Preferences?</span></Link>
+        </div>
+      );
     }
-    console.log("RESULTS", this.props.result, "DETAILS", this.props.details);
 
 
     return (
@@ -77,7 +98,7 @@ class ResultsPage extends Component {
   }
 }
 function mapStateToProps(state, ownProps){
-  console.log("STate at results page", state);
+  console.log('state at props', state);
   return {
     dine:state.dine,
     result:state.dine.query,

@@ -3,7 +3,6 @@ import '../styles/result.css';
 
 const Footer= (props) => {
   const { details, toggleMap, toggleContact, mapOpen, contactOpen, toggleLikes } = props;
-  console.log(props);
   if(details.menu){
     return (
       <ul className="footer">

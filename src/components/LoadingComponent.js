@@ -7,7 +7,6 @@ import { getUser } from '../actions/userActions';
 
 class LoadingComponent extends Component {
     componentWillMount() {
-      console.log(this.props);
         const { userLoading, getUser } = this.props;
         // if we havent tried to load the user, load user
         if (userLoading === undefined) {

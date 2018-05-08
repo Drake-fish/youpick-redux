@@ -6,9 +6,8 @@ export default class Result extends Component{
   constructor(props){
     super(props);
   }
-  
+
   render(){
-    console.log(this.props);
   const { details, result, loadNext, location, mapOpen, contactOpen, toggleMap, toggleContact, toggleLikes } = this.props;
   const url = `https://www.google.com/maps/embed/v1/directions?origin=${location.latitude}%2C${location.longitude}&destination=${details.location.address}&key=${key}`
       return(

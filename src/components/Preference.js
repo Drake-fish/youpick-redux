@@ -8,7 +8,6 @@ class Preference extends Component {
     this.state = { isChecked: this.props.status}
   }
   handleChange = () => {
-    console.log("CHANGING STATUS");
     this.setState({isChecked: !this.state.isChecked});
     const { pref, user, editPreference, id, section } = this.props;
     editPreference(user, {[pref]:!this.state.isChecked}, id, section);
@@ -16,7 +15,6 @@ class Preference extends Component {
   }
   render() {
     const { pref } = this.props;
-    console.log(this.props);
     return (
       <div className="liked-item">
         <h4>{pref}</h4>

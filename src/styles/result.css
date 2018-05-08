@@ -295,3 +295,33 @@ a {
   background: #c9ecfd;
   transition: .3s ease;
 }
+
+.out-container {
+  background: lightgrey;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 202px;
+  width: 375px;
+  border-radius: 10px;
+  margin-left: -187.5px;
+  margin-top: -101px;
+  box-shadow: 1px 2px 3px 0px black;
+}
+
+.out-container .fa-times-circle {
+  position: absolute;
+  top: -7px;
+  left: -4px;
+  font-size: 30px;
+  background-color: lightgrey;
+  box-shadow: 1px 2px 2px 0px black;
+  color: #9c2222;
+  box-shadow: 0px 1px 2px black;
+}
+
+.out-container span {
+  color: black;
+  text-align: center;
+  display: block;
+}

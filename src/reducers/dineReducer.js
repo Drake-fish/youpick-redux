@@ -2,7 +2,8 @@ import {
   FETCH_PRODUCTS_BEGIN,
   FETCH_PRODUCTS_SUCCESS,
   FETCH_PRODUCTS_FAILURE,
-  CLEAR
+  CLEAR,
+  OUT
 } from '../actions/dineActions';
 
 let initialState= {
@@ -40,6 +41,11 @@ export default function productReducer(state = initialState, action) {
     case CLEAR :
     return {
       ...state
+    }
+    case OUT :
+    return {
+      ...state,
+      error:'OUT OF PREFERENCES'
     }
     default:
       return state;
