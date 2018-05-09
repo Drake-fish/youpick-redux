@@ -34,7 +34,7 @@ class PreferencePage extends Component {
 
 
     return (
-      <div>
+      <div className="preferences">
         <div className="food-preferences">
           <h2>DINING PREFERENCES</h2>
           {foodPrefs}

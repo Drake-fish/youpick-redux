@@ -1,7 +1,7 @@
 import { OPEN_MAP, OPEN_CONTACT, OPEN_LIKES } from '../actionTypes';
 
 let initialState= {
-  mapOpen:false,
+  mapOpen:true,
   contactOpen:false,
   likes:false
 }

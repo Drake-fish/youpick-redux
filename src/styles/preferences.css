@@ -81,3 +81,10 @@ input:checked+.slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+@media(min-width:600px) {
+  .preferences {
+    width: 800px;
+    margin: 0 auto;
+  }
+}

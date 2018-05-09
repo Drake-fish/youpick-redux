@@ -57,11 +57,13 @@
 .search-text {
   width: 0;
   height: 20px;
+  opacity: 0;
   transition: .3s ease-in-out;
 }
 
 .search-text-open {
   width: 208px;
+  opacity: 1;
   transition: .3s ease-in-out;
 }
 
@@ -78,4 +80,20 @@
 
 .fa-search-open {
   opacity: 1;
+}
+
+@media(min-width:600px) {
+  .search-card {
+    width: 50%;
+    display: inline-block;
+    margin-top: 1rem;
+    height: 22rem;
+  }
+  .App {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  .search {
+    width: 100%;
+  }
 }
