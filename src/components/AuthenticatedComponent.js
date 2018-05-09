@@ -18,7 +18,6 @@ class AuthenticatedComponent extends Component{
     return (userLoading === false && user) ? <div>{children}</div> : null;
   }
 }
-
 function mapStateToProps(state, ownProps){
   console.log(state);
   return {

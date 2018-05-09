@@ -12,9 +12,7 @@ import Result from './Result';
 class ResultsPage extends Component {
   constructor(props){
     super(props);
-    this.state={
-                usedTerms:[]
-    }
+    this.state={ usedTerms:[] }
   }
   componentWillMount(){
 
@@ -22,21 +20,25 @@ class ResultsPage extends Component {
     console.log(history);
     //IF we have the users location, let's go ahead and make our selection.
     if(location){
-      this.selections(location.longitude, location.latitude);
+      let usedTerms=[];
+      this.selections(location.longitude, location.latitude, usedTerms);
     }else if(!loadingLocation && !loadingResults && !location){
       history.push('/');
     }
   }
   componentDidUpdate(prevProps, prevState){
-    //when we get the users location let's call for the food
-    if(prevProps.location !==  this.props.location){
-      this.selections(this.props.location.longitude, this.props.location.latitude);
+    //when we get the users location let's call for the result
+    const { location } = this.props;
+    let usedTerms=[];
+    if(prevProps.location !==  location){
+      this.selections(location.longitude, location.latitude, usedTerms);
     }
   }
   loadNext = () =>{
     const { history, location, dine } = this.props;
     const { usedTerms } = this.state;
     let newTerms=usedTerms.concat(dine.query);
+    console.log('newTerms', newTerms);
     this.setState({
       usedTerms:newTerms
     });
@@ -44,12 +46,11 @@ class ResultsPage extends Component {
     if(history.location.pathname.split('/')[2]){
       history.push('/');
     }else{
-      this.selections(location.longitude, location.latitude);
+      this.selections(location.longitude, location.latitude, newTerms);
     }
   }
-  selections = (lat,long) => {
+  selections = (lat,long, usedTerms) => {
     const { fetchProducts, preferences, selectTerm, history } = this.props;
-    const { usedTerms } = this.state;
     let term = selectTerm(preferences,history.location.pathname.split('/')[1],usedTerms);
     let search=history.location.pathname.split('/')[2];
     if(term && !search){
@@ -61,7 +62,6 @@ class ResultsPage extends Component {
   render() {
     const { result, mapOpen, contactOpen, details, location, loadingResults, loadingLocation, dine, history, openMap, openContact, openLikes } = this.props;
     let results;
-
     if(loadingLocation){
       results=(
         <PlayLoader message='Loading Location'/>
@@ -72,14 +72,12 @@ class ResultsPage extends Component {
       );
     }else if(result && dine.error === null){
       results=<Result mapOpen={mapOpen} contactOpen={contactOpen} toggleMap={openMap} toggleLikes={openLikes} toggleContact={openContact} location={location} details={details} result={result} loadNext={this.loadNext}/>
-    }else if(dine.error === 'error'){
-      results=<div>NO RESULTS</div>
     }else if(dine.error !== null){
       results=(
         <div className="out-container">
           <Link to="/"><i className="far fa-times-circle"></i></Link>
-          <h2>PICKY MUCH??</h2>
-          <h2>Looks like you are out of searches</h2>
+          <h2>OOPS!</h2>
+          <h2>{dine.error}</h2>
           <h2>Why not customize your </h2>
           <Link to="/preferences"><span><i className="fas fa-cog"></i>Preferences?</span></Link>
         </div>
@@ -98,7 +96,6 @@ class ResultsPage extends Component {
   }
 }
 function mapStateToProps(state, ownProps){
-  console.log('state at props', state);
   return {
     dine:state.dine,
     result:state.dine.query,

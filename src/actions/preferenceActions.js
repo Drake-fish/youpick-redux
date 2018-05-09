@@ -44,8 +44,3 @@ export function editPreference(userID, preference, id, section){
 export function deletePreference(id){
   return dispatch => database.child(id).remove();
 }
-
-// export function SaveComment(noteId, comment){
-//   //find the id of the comment add comment and add that to the note.
-//   return dispatch => database.child(noteId).child('comments').push(comment);
-// }

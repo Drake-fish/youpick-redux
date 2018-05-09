@@ -42,11 +42,8 @@ class App extends Component {
     this.setState({searchOpen:!this.state.searchOpen});
   }
   render() {
-    const divHeight= {
-      height:window.outerHeight/3 - 40
-    }
     let search=(
-      <div onClick={this.toggleSearch}  style={divHeight} className="search-card search">
+      <div onClick={this.toggleSearch} className="search-card search">
         <h4 className="search-title">SEARCH</h4>
         <div className="search-box">
           <form>
@@ -64,7 +61,7 @@ class App extends Component {
     );
     if(this.state.searchOpen){
       search=(
-        <div style={divHeight} className="search-card search">
+        <div className="search-card search">
           <h4 className="search-title search-title-closed">SEARCH</h4>
           <div className="search-box search-box-open">
           <form onSubmit={this.handleSearch}>
@@ -85,10 +82,10 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div style={divHeight} onClick={this.handleFood} className="search-card food">
+        <div onClick={this.handleFood} className="search-card food">
           <h4 className="search-title">DINE</h4>
         </div>
-        <div style={divHeight} onClick={this.handlePlay} className="search-card play">
+        <div onClick={this.handlePlay} className="search-card play">
           <h4 className="search-title">PLAY</h4>
         </div>
         {search}

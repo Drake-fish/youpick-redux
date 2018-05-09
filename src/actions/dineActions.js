@@ -28,25 +28,24 @@ export const clearResults = () => ({
 export const outOfResults= () => ({
   type:OUT
 });
+
+
 export function fetchProducts(lat, long, term) {
   return dispatch => {
     dispatch({
       type: FETCH_PRODUCTS_BEGIN,
       payload:true
     });
-    console.log("GETTING PRODUCTS HERE", lat, long, term);
     fetchJsonp(`https://api.foursquare.com/v2/venues/explore?ll=${long},${lat}&client_id=${client_id}&client_secret=${client_secret}&v=20180424&query=${term}&openNow=1&limit=1`)
       .then(function(response) {
-        console.log(response,'response from first clal');
         return response.json()
       }).then(function(json) {
           var venueDetails;
           var items = json.response;
-          console.log('response to frist call',json.response);
             if(_.isEmpty(json.response)){
               dispatch({
                 type:FETCH_PRODUCTS_FAILURE,
-                payload:'empty'
+                payload:`The search failed for ${term}`
               });
             }else{
               fetchJsonp(`https://api.foursquare.com/v2/venues/${json.response.groups[0].items[0].venue.id}?client_id=${client_id}&client_secret=${client_secret}&v=20180424`)
@@ -64,10 +63,9 @@ export function fetchProducts(lat, long, term) {
               })
             }
           }).catch(function(ex) {
-        console.log('parsing failed', ex)
         dispatch({
           type:FETCH_PRODUCTS_FAILURE,
-          payload:ex
+          payload:`Didnt find anything for ${term}`
         });
       })
     }
@@ -76,118 +74,46 @@ export function fetchProducts(lat, long, term) {
 
 export function selectTerm(pref,forWhat,usedTerms){
   return dispatch => {
-    switch(forWhat){
-      case 'food':
-        let foodSelection=['american', 'bbq', 'burgers', 'cafes', 'chicken', 'mexican', 'chinese', 'pizza', 'italian', 'deli', 'diners', 'french', 'german', 'greek', 'asian', 'indian', 'tacos', 'salad', 'soup', 'spanish', 'texmex', 'steakhouse', 'foodtrucks'];
-        if(_.isEmpty(pref)){
-          if(usedTerms.length > 0){
-          let filteredArray = foodSelection.filter(val => !usedTerms.includes(val));
-            if(filteredArray.length>0){
-              foodSelection=_.first(_.shuffle(filteredArray));
-              return foodSelection;
-            }else{
-              dispatch({
-                type:OUT
-              });
-            }
-          }else{
-            foodSelection=_.first(_.shuffle(foodSelection));
-            return foodSelection;
-          }
-
-
-
-
-
-
-        //if they do have preferences we will loop through those and select only the True values and select a random one.
-        }else{
-          //create a container to push values to
-          let selections=[];
-          //map object and push options that are true to the selections cotnainer
-          foodSelection=_.mapObject(pref.food, (opt,status) => {
-            if(_.values(opt)[0]){
-              selections.push(_.keys(opt));
-            }
-          });
-          //the array that is returned in the previous function is an array of arrays. Let's flatten it down to strings
-          var flattenedArray = [].concat.apply([], selections);
-          //the strings are mixed upper case and lower case. Let's make them all lower case.
-            flattenedArray=flattenedArray.map((term) => {
-              return term.toLowerCase();
-            });
-            //if there are usedTerms passed to this function, let's remove them and select based on the terms that are left
-            if(usedTerms.length > 0){
-            //filter the usedTerms out.
-            let filteredArray = flattenedArray.filter(val => !usedTerms.includes(val));
-            //if we still have options left to search with let's return one of those.
-              if(filteredArray.length>0){
-                filteredArray=_.first(_.shuffle(filteredArray));
-                return filteredArray;
-            //if we are out of terms to search return an error
-              }else{
-                dispatch({
-                  type:OUT
-                });
-              }
-            //if we do not have an unused terms let's just search all the terms.
-            }else{
-              flattenedArray=_.first(_.shuffle(flattenedArray));
-              return flattenedArray;
-            }
-        }
-
-
-
-      break;
-      case 'play' :
-
-      let playSelection=['Arcades', 'Bars', 'Bingo', 'BookStores', 'Bowling', 'Coffee', 'Escape Rooms', 'Laser Tag', 'Movies', 'Museums', 'Shopping', 'Spas', 'Trampolines', 'Amusement Parks', 'Aquariums', 'Bike Rentals', 'Breweries', 'Canoeing', 'Go Karts', 'Kayaking', 'Hiking', 'Mini golf', 'Movies', 'Paddle Boarding', 'Paint ball', 'Tours', 'Swimming', 'Tubing', 'Ziplining', 'Zoos', 'Wineries'];
+    function selection(pref,selections,which,usedTerms){
       if(_.isEmpty(pref)){
+        let selection;
         if(usedTerms.length > 0){
-        let filteredArray = playSelection.filter(val => !usedTerms.includes(val));
+          let filteredArray = selections.filter(val => !usedTerms.includes(val));
           if(filteredArray.length>0){
-            playSelection=_.first(_.shuffle(filteredArray));
-            return playSelection;
+            selection=_.first(_.shuffle(filteredArray));
+            return selection;
           }else{
+            console.log('no more choices');
             dispatch({
               type:OUT
             });
           }
         }else{
-          playSelection=_.first(_.shuffle(playSelection));
-          return playSelection;
+          selection=_.first(_.shuffle(selections));
+          return selection;
         }
-
-
-
-
-
-
-      //if they do have preferences we will loop through those and select only the True values and select a random one.
+        //if they do have preferences we will loop through those and select only the True values and select a random one.
       }else{
         //create a container to push values to
-        let selections=[];
+        let valArray=[];
         //map object and push options that are true to the selections cotnainer
-        playSelection=_.mapObject(pref.play, (opt,status) => {
+        _.mapObject(pref[which], (opt,status) => {
           if(_.values(opt)[0]){
-            selections.push(_.keys(opt));
+            valArray.push(_.keys(opt)[0]);
           }
         });
-        //the array that is returned in the previous function is an array of arrays. Let's flatten it down to strings
-        var flattenedArray = [].concat.apply([], selections);
         //the strings are mixed upper case and lower case. Let's make them all lower case.
-          flattenedArray=flattenedArray.map((term) => {
+        let lowerCaseArray=valArray.map((term) => {
             return term.toLowerCase();
-          });
+            });
           //if there are usedTerms passed to this function, let's remove them and select based on the terms that are left
           if(usedTerms.length > 0){
-          //filter the usedTerms out.
-          let filteredArray = flattenedArray.filter(val => !usedTerms.includes(val));
-          //if we still have options left to search with let's return one of those.
+            //filter the usedTerms out.
+            let filteredArray = lowerCaseArray.filter(val => !usedTerms.includes(val));
+            //if we still have options left to search with let's return one of those.
             if(filteredArray.length>0){
-              filteredArray=_.first(_.shuffle(filteredArray));
-              return filteredArray;
+              let finalSelection=_.first(_.shuffle(filteredArray));
+              return finalSelection;
           //if we are out of terms to search return an error
             }else{
               dispatch({
@@ -196,11 +122,19 @@ export function selectTerm(pref,forWhat,usedTerms){
             }
           //if we do not have an unused terms let's just search all the terms.
           }else{
-            flattenedArray=_.first(_.shuffle(flattenedArray));
-            return flattenedArray;
+            let finalSelection=_.first(_.shuffle(lowerCaseArray));
+            return finalSelection;
           }
+        }
       }
-      break;
+    switch(forWhat){
+      case 'food':
+        let foodSelection=['american', 'bbq', 'burgers', 'cafes', 'chicken', 'mexican', 'chinese', 'pizza', 'italian', 'deli', 'diners', 'french', 'german', 'greek', 'asian', 'indian', 'tacos', 'salad', 'soup', 'spanish', 'texmex', 'steakhouse', 'foodtrucks'];
+        return selection(pref,foodSelection, 'food', usedTerms);
+        break;
+      case 'play' :
+        let playSelection=['arcades', 'bars', 'bingo', 'book stores', 'bowling', 'coffee', 'escape rooms', 'laser tag', 'movies', 'museums', 'shopping', 'spas', 'trampolines', 'amusement parks', 'aquariums', 'bike rentals', 'breweries', 'canoeing', 'go carts', 'kayaks', 'hiking', 'mini golf', 'movies', 'paddle boarding', 'paint ball', 'tours', 'swimming', 'tubing', 'zip lining', 'zoo', 'wineries'];
+        return selection(pref, playSelection, 'play', usedTerms);
     }
   }
 }

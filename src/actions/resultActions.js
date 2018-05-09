@@ -8,17 +8,17 @@ export function openMap() {
     });
   }
 }
-    export function openContact() {
-      return dispatch => {
-        dispatch({
-          type:OPEN_CONTACT
-        });
-      }
-    }
-    export function openLikes() {
-      return dispatch => {
-        dispatch({
-          type:OPEN_LIKES
-        });
-      }
-    }
+export function openContact() {
+  return dispatch => {
+    dispatch({
+      type:OPEN_CONTACT
+    });
+  }
+}
+export function openLikes() {
+  return dispatch => {
+    dispatch({
+      type:OPEN_LIKES
+    });
+  }
+}

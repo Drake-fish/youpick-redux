@@ -40,8 +40,6 @@ export function getLocation() {
       payload:err
     });
   }
-
-  navigator.geolocation.getCurrentPosition(success, error);
-
+      navigator.geolocation.getCurrentPosition(success, error);
     }
   }
