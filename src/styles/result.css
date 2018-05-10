@@ -8,7 +8,8 @@
   margin: 0 auto;
   background-color: #f3f3f3;
   overflow: hidden;
-  height: 492px;
+  height: 495px;
+  margin-bottom: 3rem;
   position: relative;
 }
 
@@ -24,6 +25,27 @@
 
 .result-information-container {
   margin: 1rem;
+  position: absolute;
+  width: 91%;
+  text-align: center;
+  top: 178px;
+  left: -368px;
+  transition: .3s ease;
+}
+
+.information-open {
+  left: 0;
+  transition: .3s ease;
+}
+
+.result-information-container a {
+  display: block;
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  background: black;
+  color: white;
+  display: inline-block;
+  margin-left: 1rem;
 }
 
 .result-title {
@@ -34,6 +56,7 @@
 
 .result-type {
   font-size: 18px;
+  display: inline-block;
   color: #848484;
   margin: 0;
   margin-top: .5rem;
@@ -41,13 +64,14 @@
 }
 
 .cost {
-  display: block;
-  margin: 1rem 0;
+  display: inline-block;
+  margin: 1rem 0 .5rem 1rem;
 }
 
 .result-rating-container {
   display: inline-block;
   padding: 1rem;
+  color: white;
 }
 
 .photo-0 {
@@ -68,15 +92,24 @@ a {
 }
 
 .details-container p {
-  padding: .5rem;
-  border: 1px solid black;
-  border-radius: 10px;
-  vertical-align: initial;
-  margin-left: 5px;
+  text-align: left;
+  vertical-align: text-top;
+  overflow: hidden;
+  height: 53px;
 }
 
 .photo-container {
   padding: 1rem;
+}
+
+.address {
+  margin: 0;
+  margin-bottom: .5rem;
+  margin-top: 1rem;
+}
+
+.cross-street {
+  margin: 0;
 }
 
 .footer {
@@ -84,6 +117,8 @@ a {
   list-style: none;
   width: 100%;
   margin: 0;
+  z-index: 3;
+  background: white;
   position: absolute;
   bottom: 0;
 }
@@ -127,10 +162,10 @@ a {
   width: 33%;
 }
 
-/* .footer .footer-3 .far {
-  left: 45px;
-  color: black;
-} */
+.fa-info, .fa-map-marker-alt, .fa-mobile-alt {
+  font-size: 3rem;
+  margin-top: 3px;
+}
 
 .footer li a {
   color: black;
@@ -146,19 +181,6 @@ a {
   background: black;
   color: white;
   width: 318px;
-}
-
-.footer-4 {
-  text-align: center;
-  display: inline-block;
-  width: 25%;
-  height: 57px;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  border-right: 1px solid grey;
-  border-top: 1px solid grey;
-  border-bottom: 1px solid grey;
-  position: relative;
 }
 
 .footer-map-open {
@@ -201,11 +223,14 @@ a {
 .map-container {
   position: absolute;
   left: -321px;
+  top: 13rem;
   transition: .3s ease;
+  text-align: center;
 }
 
 .contact {
-  margin-left: -172px;
+  margin-left: -300px;
+  margin-top: 3rem;
   transition: .3s ease;
 }
 
@@ -245,9 +270,17 @@ a {
 }
 
 .tip-container {
-  display: inline-block;
-  width: 241px;
-  vertical-align: middle;
+  height: 100px;
+  margin-top: 1rem;
+}
+
+.user {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  float: left;
+  margin-right: 7px;
+  border: 2px solid black;
 }
 
 .fa-angle-right {

@@ -1,4 +1,4 @@
-import { OPEN_MAP, OPEN_CONTACT, OPEN_LIKES } from '../actionTypes';
+import { OPEN_MAP, OPEN_CONTACT, OPEN_INFO } from '../actionTypes';
 
 
 export function openMap() {
@@ -15,10 +15,10 @@ export function openContact() {
     });
   }
 }
-export function openLikes() {
+export function openInfo() {
   return dispatch => {
     dispatch({
-      type:OPEN_LIKES
+      type:OPEN_INFO
     });
   }
 }

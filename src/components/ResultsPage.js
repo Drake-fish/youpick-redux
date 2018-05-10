@@ -4,7 +4,7 @@ import '../styles/result.css';
 import { Link } from 'react-router-dom';
 import { clearResults } from '../actions/dineActions';
 import { fetchProducts, selectTerm } from '../actions/dineActions';
-import { openMap, openContact, openLikes } from '../actions/resultActions';
+import { openMap, openContact, openInfo } from '../actions/resultActions';
 import PlayLoader from './PlayLoader';
 import _ from 'underscore';
 import Result from './Result';
@@ -60,7 +60,8 @@ class ResultsPage extends Component {
     }
   }
   render() {
-    const { result, mapOpen, contactOpen, details, location, loadingResults, loadingLocation, dine, history, openMap, openContact, openLikes } = this.props;
+    console.log("PROPS AT RESULTS PAGE PAGE", this.props);
+    const { result, mapOpen, infoOpen, contactOpen, details, location, loadingResults, loadingLocation, dine, history, openMap, openContact, openInfo } = this.props;
     let results;
     if(loadingLocation){
       results=(
@@ -71,7 +72,7 @@ class ResultsPage extends Component {
         <PlayLoader message='Searching for something awesome!'/>
       );
     }else if(result && dine.error === null){
-      results=<Result history={history} mapOpen={mapOpen} contactOpen={contactOpen} toggleMap={openMap} toggleLikes={openLikes} toggleContact={openContact} location={location} details={details} result={result} loadNext={this.loadNext}/>
+      results=<Result history={history} infoOpen={infoOpen} mapOpen={mapOpen} contactOpen={contactOpen} toggleMap={openMap} toggleInfo={openInfo} toggleContact={openContact} location={location} details={details} result={result} loadNext={this.loadNext}/>
     }else if(dine.error !== null){
       results=(
         <div className="out-container">
@@ -96,6 +97,7 @@ class ResultsPage extends Component {
   }
 }
 function mapStateToProps(state, ownProps){
+  console.log("STATE AT RESULTS PAGE", state);
   return {
     dine:state.dine,
     result:state.dine.query,
@@ -106,9 +108,10 @@ function mapStateToProps(state, ownProps){
     location:state.location.location,
     loadingLocation:state.location.loadingLocation,
     mapOpen:state.results.mapOpen,
-    contactOpen:state.results.contactOpen
+    contactOpen:state.results.contactOpen,
+    infoOpen:state.results.info
 
   }
 }
 
-export default connect(mapStateToProps, { clearResults, fetchProducts, selectTerm, openMap, openContact, openLikes })(ResultsPage);
+export default connect(mapStateToProps, { clearResults, fetchProducts, selectTerm, openMap, openContact, openInfo })(ResultsPage);

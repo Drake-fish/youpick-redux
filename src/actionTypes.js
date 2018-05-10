@@ -5,4 +5,4 @@ export const GET_PREFERENCES_STATUS = 'GET_PREFERENCES_STATUS';
 export const CLEAR_PREFERENCES = 'CLEAR_PREFERENCES';
 export const OPEN_MAP = 'OPEN_MAP';
 export const OPEN_CONTACT = 'OPEN_CONTACT';
-export const OPEN_LIKES = 'OPEN_LIKES';
+export const OPEN_INFO = 'OPEN_LIKES';

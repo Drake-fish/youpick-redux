@@ -1,19 +1,19 @@
-import { OPEN_MAP, OPEN_CONTACT, OPEN_LIKES } from '../actionTypes';
+import { OPEN_MAP, OPEN_CONTACT, OPEN_INFO } from '../actionTypes';
 
 let initialState= {
-  mapOpen:true,
+  mapOpen:false,
   contactOpen:false,
-  likes:false
+  info:true
 }
 export default function(state = initialState, action){
   switch(action.type){
     case OPEN_MAP :
     console.log('opening-map');
-    return {...state, mapOpen:true, contactOpen:false, likes:false};
+    return {...state, mapOpen:true, contactOpen:false, info:false};
     case OPEN_CONTACT :
-      return {...state, mapOpen:false, contactOpen:true, likes:false};
-    case OPEN_LIKES :
-    return {...state, mapOpen:false, contactOpen:false, likes:true}
+      return {...state, mapOpen:false, contactOpen:true, info:false};
+    case OPEN_INFO :
+    return {...state, mapOpen:false, contactOpen:false, info:true}
     default :
       return state;
   }
