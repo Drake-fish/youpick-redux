@@ -55,21 +55,18 @@ class Header extends Component{
                   ) : (
                     <li>
                       <Link to="/">
-
                         <i className="fas fa-comment"></i>
                       </Link>
                     </li>
                   )
                 }
+                  <li className="youpick">
+                    <h1>YOU PICK</h1>
+                  </li>
                   <li className="login-nav">
                     <Link to="/login">
                       <i className="fas fa-user-circle logged-out"></i>
                         <p>Login</p>
-                    </Link>
-                  </li>
-                  <li className="settings">
-                    <Link to="/login">
-                      <i className="fas fa-sliders-h"></i>
                     </Link>
                   </li>
                 </ul>
@@ -86,22 +83,18 @@ class Header extends Component{
                     ) : (
                       <li>
                         <Link to="/">
-
                           <i className="fas fa-comment"></i>
                         </Link>
                       </li>
                     )
                   }
-
+                  <li className="youpick">
+                    <h1>YOU PICK</h1>
+                  </li>
                   <li className="login-nav">
                     <Link onClick={() => this.props.logout()} to="/logout">
                       <i className="fas fa-user-circle logged-in"></i>
                       <p>Logout</p>
-                    </Link>
-                  </li>
-                  <li className="settings">
-                    <Link to="/preferences">
-                      <i className="fas fa-sliders-h"></i>
                     </Link>
                   </li>
                 </ul>

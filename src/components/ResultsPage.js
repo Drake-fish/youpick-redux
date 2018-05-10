@@ -71,7 +71,7 @@ class ResultsPage extends Component {
         <PlayLoader message='Searching for something awesome!'/>
       );
     }else if(result && dine.error === null){
-      results=<Result mapOpen={mapOpen} contactOpen={contactOpen} toggleMap={openMap} toggleLikes={openLikes} toggleContact={openContact} location={location} details={details} result={result} loadNext={this.loadNext}/>
+      results=<Result history={history} mapOpen={mapOpen} contactOpen={contactOpen} toggleMap={openMap} toggleLikes={openLikes} toggleContact={openContact} location={location} details={details} result={result} loadNext={this.loadNext}/>
     }else if(dine.error !== null){
       results=(
         <div className="out-container">

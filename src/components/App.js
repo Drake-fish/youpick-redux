@@ -5,6 +5,8 @@ import { getPreferences, savePreference } from '../actions/preferenceActions';
 import { getUser } from '../actions/userActions';
 import { fetchProducts } from '../actions/dineActions';
 import { getLocation } from '../actions/locationAction';
+import SearchComponent from './SearchComponent';
+import TitleComponent from './TitleComponent';
 
 class App extends Component {
   constructor(props){
@@ -41,10 +43,22 @@ class App extends Component {
   toggleSearch = () => {
     this.setState({searchOpen:!this.state.searchOpen});
   }
+  handleSettings = () => {
+    if(this.props.user){
+      this.props.history.push('/preferences');
+    }else{
+      this.props.history.push('/login');
+    }
+
+  }
   render() {
     let search=(
-      <div onClick={this.toggleSearch} className="search-card search">
-        <h4 className="search-title">SEARCH</h4>
+      <div className="option-container">
+        <SearchComponent title="DINE" click={this.handleFood} image={require("../images/food.jpg")}/>
+        <SearchComponent title="SEARCH" click={this.toggleSearch} image={require("../images/searchimage.jpg")}/>
+        <SearchComponent title="PLAY" click={this.handlePlay} image={require("../images/random.jpg")}/>
+        <SearchComponent title="SETTINGS" click={this.handleSettings} image={require("../images/preferences.jpg")}/>
+        <div className="modal"></div>
         <div className="search-box">
           <form>
             <input type="text"
@@ -61,20 +75,23 @@ class App extends Component {
     );
     if(this.state.searchOpen){
       search=(
-        <div className="search-card search">
-          <h4 className="search-title search-title-closed">SEARCH</h4>
+        <div className="option-container search-open">
+          <SearchComponent title="DINE" click={this.handleFood} image={require("../images/food.jpg")}/>
+          <SearchComponent title="SEARCH" click={this.toggleSearch} image={require("../images/searchimage.jpg")}/>
+          <SearchComponent title="PLAY" click={this.handlePlay} image={require("../images/random.jpg")}/>
+          <SearchComponent title="SETTINGS" click={this.handleSettings} image={require("../images/preferences.jpg")}/>
+          <div onClick={this.toggleSearch} className="modal modal-open"></div>
           <div className="search-box search-box-open">
-          <form onSubmit={this.handleSearch}>
-            <input type="text"
-                   className="search-text search-text-open"
-                   value={this.state.search}
-                   placeholder="Search"
-                   onChange={this.handleChange}
-                   name="search"
-                   required
-            />
-            <i onClick={this.handleSearch} className="fas fa-search fa-search-open"></i>
-          </form>
+            <form onSubmit={this.handleSearch}>
+              <input onChange={this.handleChange} type="text"
+                     className="search-text search-text-open"
+                     value={this.state.search}
+                     placeholder="Search"
+                     name="search"
+                     required
+              />
+              <i className="fas fa-search"></i>
+            </form>
           </div>
         </div>
       );
@@ -82,12 +99,6 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div onClick={this.handleFood} className="search-card food">
-          <h4 className="search-title">DINE</h4>
-        </div>
-        <div onClick={this.handlePlay} className="search-card play">
-          <h4 className="search-title">PLAY</h4>
-        </div>
         {search}
       </div>
     );

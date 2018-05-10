@@ -1,0 +1,32 @@
+.option-container {
+  background-color: #464444cf;
+  width: 350px;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 1rem;
+  color: white;
+  margin-top: 2rem;
+  position: relative;
+}
+
+.search-component {
+  width: 50%;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.search-image {
+  width: 108px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  border: 3px solid #c38757;
+}
+
+.search-component-title {
+  display: block;
+  text-align: center;
+  letter-spacing: 5px;
+}

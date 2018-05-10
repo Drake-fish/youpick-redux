@@ -18,6 +18,7 @@ import ResultsPage from './components/ResultsPage';
 import EditPreference from './components/EditPreference';
 import PreferencePage from './components/PreferencePage';
 import LoadingComponent from './components/LoadingComponent';
+import Footer from './components/Footer';
 
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
@@ -39,6 +40,7 @@ ReactDOM.render(<Provider store = { store }>
                               <Route path="/preferences" component={PreferencePage} exact={true} />
                             </AuthenticatedComponent>
                         </Switch>
+                        <Footer/>
                       </div>
                     </LoadingComponent>
                   </BrowserRouter>

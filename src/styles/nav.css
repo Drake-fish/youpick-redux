@@ -1,3 +1,10 @@
+html {
+  background: url('../images/homebackground.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+}
+
 nav ul {
   list-style: none;
   background-color: #3081ca;
@@ -12,14 +19,26 @@ nav ul:after {
 }
 
 .fa-comment, .settings, .login-nav, .fa-pulse {
-  padding: 1rem;
   font-size: 2rem;
   color: white;
 }
 
+nav ul li {
+  display: inline-block;
+  width: 20%;
+  text-align: center;
+}
+
+.youpick {
+  width: 60%;
+  font-family: 'Montserrat';
+  display: inline-block;
+  letter-spacing: 5px;
+  color: #000000a3;
+}
+
 .login-nav {
   padding: 0;
-  padding: 0 1rem;
 }
 
 .fa-user-circle {
@@ -42,11 +61,6 @@ nav ul:after {
   color: white;
   text-align: center;
   text-decoration: none;
-}
-
-.fa-comment {
-  float: left;
-  border-right: 1px solid black;
 }
 
 .settings {
