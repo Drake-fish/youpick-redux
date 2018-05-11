@@ -17,22 +17,16 @@ class App extends Component {
     }
   }
   handleFood = () =>{
-    if(this.props.location === null){
-      this.props.getLocation();
-    };
+  !this.props.location ? this.props.getLocation() : null;
     this.props.history.push('/food');
   }
   handlePlay = () => {
-    if(this.props.location === null){
-      this.props.getLocation();
-    }
+  !this.props.location ? this.props.getLocation() : null;
     this.props.history.push('/play');
   }
   handleSearch = (e) => {
     e.preventDefault();
-    if(this.props.location === null){
-      this.props.getLocation();
-    }
+    !this.props.location ? this.props.getLocation() : null;
     this.props.history.push(`/searchresult/${this.state.search}`);
   }
   handleChange = (e) => {
@@ -57,7 +51,7 @@ class App extends Component {
         <SearchComponent title="DINE" click={this.handleFood} image={require("../images/food.jpg")}/>
         <SearchComponent title="SEARCH" click={this.toggleSearch} image={require("../images/searchimage.jpg")}/>
         <SearchComponent title="PLAY" click={this.handlePlay} image={require("../images/random.jpg")}/>
-        <SearchComponent title="SETTINGS" click={this.handleSettings} image={require("../images/preferences.jpg")}/>
+        <SearchComponent title="SETTINGS" click={this.handleSettings} icon={<i className="fas fa-cogs"></i>} image={null}/>
         <div className="modal"></div>
         <div className="search-box">
           <form>

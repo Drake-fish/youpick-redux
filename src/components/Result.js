@@ -19,7 +19,7 @@ export default class Result extends Component{
   const url = `https://www.google.com/maps/embed/v1/directions?origin=${location.latitude}%2C${location.longitude}&destination=${details.location.address}&key=${key}`
       return(
       <div>
-        <h2><i onClick={this.goBack} className="fas fa-angle-left"></i>How About {result}<i onClick={loadNext} className="fas fa-times"></i></h2>
+        <h2><i onClick={this.goBack} className="fas fa-angle-left"></i>How About <span className="term">{result.toUpperCase()}?</span><i onClick={loadNext} className="fas fa-angle-right"></i></h2>
         <div className="details-container">
           <div className="result-photo-container">
             <img className="result-photo" src={`${details.photos.groups[0].items[0].prefix}original${details.photos.groups[0].items[0].suffix}`}/>

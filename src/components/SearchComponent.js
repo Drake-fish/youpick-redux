@@ -5,7 +5,7 @@ const SearchComponent= (props) => {
   console.log(props);
   return(
     <div onClick={props.click} className="search-component">
-      <img className="search-image" src={props.image}/>
+      {props.image ? <img className="search-image" src={props.image}/> : <div className="settings">{props.icon}</div>}
       <span className="search-component-title">{props.title}</span>
     </div>
   )

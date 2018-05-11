@@ -14,10 +14,12 @@ class PreferencePage extends Component {
   render() {
     let foodPrefs;
     let playPrefs;
+    let foodArray=[];
       const { preferences } = this.props;
       if(preferences !== null){
         foodPrefs=_.map(preferences.food, (food,id)=>{
           let key=id;
+          foodArray.push(food);
           return _.map(food, (status,pref)=>{
             return <Preference key={id} editPreference={this.props.editPreference} section={"food"} user={this.props.user.uid} pref={pref} id={key} status={status}/>
           })

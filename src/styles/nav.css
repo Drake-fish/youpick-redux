@@ -1,8 +1,9 @@
 html {
-  background: url('../images/homebackground.jpg');
+  background: url('../images/homebackground.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
-  background-repeat: no-repeat;
-  height: 100%;
 }
 
 nav ul {
@@ -18,7 +19,7 @@ nav ul:after {
   clear: both;
 }
 
-.fa-comment, .settings, .login-nav, .fa-pulse {
+.fa-comment, .login-nav, .fa-pulse {
   font-size: 2rem;
   color: white;
 }
@@ -61,11 +62,6 @@ nav ul li {
   color: white;
   text-align: center;
   text-decoration: none;
-}
-
-.settings {
-  float: right;
-  border-right: 1px solid black;
 }
 
 .fa-sliders-h {
