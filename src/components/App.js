@@ -99,7 +99,6 @@ class App extends Component {
   }
 }
 function mapStateToProps(state, ownProps){
-  console.log(state);
   return {
     user: state.user,
     userLoading: state.loading.user,

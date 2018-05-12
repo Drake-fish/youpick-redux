@@ -89,7 +89,7 @@ class Header extends Component{
                     )
                   }
                   <li className="youpick">
-                    <h1>YOU PICK</h1>
+                    <h1><a href="/">YOU PICK</a></h1>
                   </li>
                   <li className="login-nav">
                     <Link onClick={() => this.props.logout()} to="/logout">

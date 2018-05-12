@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { clearResults } from '../actions/dineActions';
 import { fetchProducts, selectTerm } from '../actions/dineActions';
 import { openMap, openContact, openInfo } from '../actions/resultActions';
+import ResultError from './ResultError';
 import PlayLoader from './PlayLoader';
 import _ from 'underscore';
 import Result from './Result';
@@ -74,15 +75,7 @@ class ResultsPage extends Component {
     }else if(result && dine.error === null){
       results=<Result history={history} infoOpen={infoOpen} mapOpen={mapOpen} contactOpen={contactOpen} toggleMap={openMap} toggleInfo={openInfo} toggleContact={openContact} location={location} details={details} result={result} loadNext={this.loadNext}/>
     }else if(dine.error !== null){
-      results=(
-        <div className="out-container">
-          <Link to="/"><i className="far fa-times-circle"></i></Link>
-          <h2>OOPS!</h2>
-          <h2>{dine.error}</h2>
-          <h2>Why not customize your </h2>
-          <Link to="/preferences"><span><i className="fas fa-cog"></i>Preferences?</span></Link>
-        </div>
-      );
+      results=(<ResultError history={history} loadNext={this.loadNext} result={result}/>);
     }
 
 

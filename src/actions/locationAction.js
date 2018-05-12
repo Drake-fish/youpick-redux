@@ -1,8 +1,5 @@
+import { GET_LOCATION_BEGIN, GET_LOCATION_SUCCESS, GET_LOCATION_FAILURE, GET_LOCATION } from '../actionTypes';
 
-export const GET_LOCATION_BEGIN= 'GET_LOCATION_BEGIN';
-export const GET_LOCATION_SUCCESS = 'GET_LOCATION_SUCCESS';
-export const GET_LOCATION_FAILURE = 'GET_LOCATION_FAILURE';
-export const GET_LOCATION = 'GET_LOCATION';
 
 export const getLocationBegin = () => ({
   type: GET_LOCATION_BEGIN

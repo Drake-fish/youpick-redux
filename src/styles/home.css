@@ -1,3 +1,14 @@
+.option-container {
+  background-color: #464444cf;
+  width: 350px;
+  margin: 0 auto;
+  border-radius: 10px;
+  padding: 1rem;
+  color: white;
+  margin-top: 2rem;
+  position: relative;
+}
+
 .search-card {
   width: 100%;
   text-align: center;
@@ -104,20 +115,4 @@
 
 .search-box-open .fa-search {
   opacity: 1;
-}
-
-@media(min-width:600px) {
-  .search-card {
-    width: 50%;
-    display: inline-block;
-    margin-top: 1rem;
-    height: 22rem;
-  }
-  .App {
-    max-width: 1300px;
-    margin: 0 auto;
-  }
-  .search {
-    width: 100%;
-  }
 }

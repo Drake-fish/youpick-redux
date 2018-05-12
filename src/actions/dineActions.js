@@ -1,13 +1,7 @@
 import fetchJsonp from 'fetch-jsonp';
 import { client_secret, client_id } from '../config';
 import _ from 'underscore';
-
-
-export const FETCH_PRODUCTS_BEGIN= 'FETCH_PRODUCTS_BEGIN';
-export const FETCH_PRODUCTS_SUCCESS = 'FETCH_PRODUCTS_SUCCESS';
-export const FETCH_PRODUCTS_FAILURE = 'FETCH_PRODUCTS_FAILURE';
-export const CLEAR = 'CLEAR';
-export const OUT = 'OUT';
+import { FETCH_PRODUCTS_BEGIN, FETCH_PRODUCTS_SUCCESS, FETCH_PRODUCTS_FAILURE, CLEAR, OUT } from '../actionTypes';
 
 export const fetchProductsBegin = () => ({
   type: FETCH_PRODUCTS_BEGIN
@@ -45,7 +39,7 @@ export function fetchProducts(lat, long, term) {
             if(_.isEmpty(json.response)){
               dispatch({
                 type:FETCH_PRODUCTS_FAILURE,
-                payload:`The search failed for ${term}`
+                payload:`empty`
               });
             }else{
               fetchJsonp(`https://api.foursquare.com/v2/venues/${json.response.groups[0].items[0].venue.id}?client_id=${client_id}&client_secret=${client_secret}&v=20180424`)
@@ -79,7 +73,8 @@ export function selectTerm(pref,forWhat,usedTerms){
         let selection;
         if(usedTerms.length > 0){
           let filteredArray = selections.filter(val => !usedTerms.includes(val));
-          if(filteredArray.length>0){
+          console.log("FILTERED ARRAY", filteredArray);
+          if(filteredArray.length > 0){
             selection=_.first(_.shuffle(filteredArray));
             return selection;
           }else{
@@ -110,8 +105,9 @@ export function selectTerm(pref,forWhat,usedTerms){
           if(usedTerms.length > 0){
             //filter the usedTerms out.
             let filteredArray = lowerCaseArray.filter(val => !usedTerms.includes(val));
+            console.log("FILTERERED ARRAY", filteredArray)
             //if we still have options left to search with let's return one of those.
-            if(filteredArray.length>0){
+            if(filteredArray.length > 0){
               let finalSelection=_.first(_.shuffle(filteredArray));
               return finalSelection;
           //if we are out of terms to search return an error

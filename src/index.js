@@ -15,7 +15,6 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Login from './components/Login';
 import AuthenticatedComponent from './components/AuthenticatedComponent';
 import ResultsPage from './components/ResultsPage';
-import EditPreference from './components/EditPreference';
 import PreferencePage from './components/PreferencePage';
 import LoadingComponent from './components/LoadingComponent';
 import Footer from './components/Footer';
@@ -36,7 +35,6 @@ ReactDOM.render(<Provider store = { store }>
                           <Route path="/searchresult/:term" component={ResultsPage} exact={true}/>
                           <Route path="/" component={App} exact={true}/>
                             <AuthenticatedComponent>
-                              <Route path="/preferences/:id/edit" component={EditPreference} exact={true} />
                               <Route path="/preferences" component={PreferencePage} exact={true} />
                             </AuthenticatedComponent>
                         </Switch>

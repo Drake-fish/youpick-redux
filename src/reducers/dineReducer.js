@@ -4,7 +4,7 @@ import {
   FETCH_PRODUCTS_FAILURE,
   CLEAR,
   OUT
-} from '../actions/dineActions';
+} from '../actionTypes';
 
 let initialState= {
                     details:null,
@@ -45,6 +45,7 @@ export default function productReducer(state = initialState, action) {
     case OUT :
     return {
       ...state,
+      query:'no mas!',
       error:'OUT OF PREFERENCES'
     }
     default:

@@ -35,6 +35,9 @@ nav ul li {
   font-family: 'Montserrat';
   display: inline-block;
   letter-spacing: 5px;
+}
+
+.youpick a {
   color: #000000a3;
 }
 
