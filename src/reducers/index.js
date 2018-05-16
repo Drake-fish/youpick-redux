@@ -7,13 +7,12 @@ import locationReducer from './locationReducer';
 import ResultsReducer from './ResultsReducer';
 
 const rootReducer = combineReducers({
-  user: userReducer,
-  preferences: preferenceReducer,
-  loading: loadingReducer,
-  dine: dineReducer,
-  location: locationReducer,
-  results:ResultsReducer
-
+	user: userReducer,
+	preferences: preferenceReducer,
+	loading: loadingReducer,
+	dine: dineReducer,
+	location: locationReducer,
+	results: ResultsReducer
 });
 
 export default rootReducer;
